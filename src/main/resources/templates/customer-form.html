@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title> Customer Input Form </title>
+	</head>
+	<body>
+		<form method="post" th:action="@{${customer.id} != 0} ? @{'/web/customers/update/' + ${customer.id}} : @{/web/customers}">
+			<input type="hidden" th:field="*{customer.id}"/>
+			<label> Name: </label>
+			<input type="text" th:field="*{customer.name}"/>
+			<button type="submit"> Submit </button>
+		</form>
+	</body>
+</html>
