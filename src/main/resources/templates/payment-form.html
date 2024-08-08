@@ -48,6 +48,21 @@
         button[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .nav-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .nav-button a {
+            text-decoration: none;
+            background-color: #ccc;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .nav-button a:hover {
+            background-color: #bbb;
+        }
     </style>
     <script>
         function makePayment() {
@@ -77,5 +92,8 @@
         <input type="number" id="payment" name="payment"/>
         <button id="make_payment" type="submit" name="action">Make Payment</button>
     </form>
+    <div class="nav-button">
+        <a th:href="@{/web/customers}">Back to Customer List</a>
+    </div>
 </body>
 </html>

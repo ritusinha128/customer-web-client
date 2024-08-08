@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            position: relative; /* Ensure body is relative for absolute positioning */
         }
         h1 {
             margin-bottom: 20px;
@@ -31,6 +32,11 @@
         tr:hover {
             background-color: #f1f1f1;
         }
+        .create-customer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
         a {
             text-decoration: none;
             color: #007bff;
@@ -42,6 +48,7 @@
 </head>
 <body>
     <h1>Customers</h1>
+    <a th:href="@{'/web/customers/create'}" class="create-customer">Create New Customer</a>
     <table>
         <thead>
             <tr>
@@ -68,6 +75,5 @@
             </tr>
         </tbody>
     </table>
-    <a th:href="@{'/web/customers/create'}">Create New Customer</a>
 </body>
 </html>
