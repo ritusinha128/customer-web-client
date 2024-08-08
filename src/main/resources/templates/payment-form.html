@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title> Payment Form </title>
+	</head>
+	<body>
+		<form method="post" th:action="@{/web/customers/payment}">
+			<label> ID: </label>
+			<input type="number" th:field="*{customer.id}" readonly></input>
+			<label> Payment Amount: </label>
+			<input type="number" id="payment" name="payment"></input>
+			<button id="make_payment" type="submit" name="action" > Make Payment </button>
+		</form>
+	</body>
+</html>

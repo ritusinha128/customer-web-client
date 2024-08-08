@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title> Purchase Form </title>
+	</head>
+	<script>
+		function updateTotalSales(){
+			const quantityField = document.getElementById("quantity");
+			const totalSalesField = document.getElementById("totalSales");
+			totalSalesField.value = quantityField.value*25;
+			const purchase = document.getElementById("purchase");
+			const purchaseCredit = document.getElementById("purchase_credit");
+			if (parseFloat(totalSalesField.value) > 0){
+				purchase.disabled = false;
+				purchaseCredit.disabled = false;
+			} else {
+				purchase.disabled=true;
+				purchaseCredit.disabled = true;
+			}
+		}
+	</script>
+	<body>
+		<form method="post" th:action="@{/web/customers/purchase}">
+			<label> ID: </label>
+			<input type="number" th:field="*{customer.id}" readonly></input>
+			<label> Quantity </label>
+			<input type="number" id="quantity" oninput="updateTotalSales()"></input>
+			<label> Total Sales: </label>
+			<input type="number" id="totalSales" name="totalSales" readonly></input>
+			<button id="purchase" type="submit" disabled name="action" value="purchase" > Purchase </button>
+			<button id="purchase_credit" type="submit" disabled name="action" value="purchaseCredit" > Purchase with Credit </button>
+		</form>
+	</body>
+</html>

@@ -8,11 +8,20 @@
 	<tr>
 		<th> ID </th>
 		<th> Name </th>
+		<th> Total Sales </th>
+		<th> Balance Due </th>
 	</tr>
 	<tr th:each="customer : ${customers}">
 		<td th:text="${customer.id}"/>
 		<td th:text="${customer.name}"/>
+		<td th:text="${customer.totalSales}"/>
+		<td th:text="${customer.balanceDue}"/>
+		<td> <a th:href="@{'/web/customers/update/' + ${customer.id}}"> Edit </a> </td>
+		<td> <a th:href="@{'/web/customers/delete/' + ${customer.id}}"> Delete </a> </td>
+		<td> <a th:href="@{'/web/customers/purchase/' + ${customer.id}}"> Purchase </a>
+		<td> <a th:href="@{'/web/customers/payment/' + ${customer.id}}"> Payment </a>
 	</tr>
 	</table>
+	<a th:href="@{'/web/customers/create'}"> Create New Customer </a>
 </body>
 </html>
