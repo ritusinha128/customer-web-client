@@ -1,27 +1,73 @@
-<html>
-	<head>
-		<title> Customers </title>
-	</head>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-	<h1> Customers: </h1>
-	<table>
-	<tr>
-		<th> ID </th>
-		<th> Name </th>
-		<th> Total Sales </th>
-		<th> Balance Due </th>
-	</tr>
-	<tr th:each="customer : ${customers}">
-		<td th:text="${customer.id}"/>
-		<td th:text="${customer.name}"/>
-		<td th:text="${customer.totalSales}"/>
-		<td th:text="${customer.balanceDue}"/>
-		<td> <a th:href="@{'/web/customers/update/' + ${customer.id}}"> Edit </a> </td>
-		<td> <a th:href="@{'/web/customers/delete/' + ${customer.id}}"> Delete </a> </td>
-		<td> <a th:href="@{'/web/customers/purchase/' + ${customer.id}}"> Purchase </a>
-		<td> <a th:href="@{'/web/customers/payment/' + ${customer.id}}"> Payment </a>
-	</tr>
-	</table>
-	<a th:href="@{'/web/customers/create'}"> Create New Customer </a>
+    <h1>Customers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Total Sales</th>
+                <th>Balance Due</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Purchase</th>
+                <th>Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.totalSales}"></td>
+                <td th:text="${customer.balanceDue}"></td>
+                <td><a th:href="@{'/web/customers/update/' + ${customer.id}}">Edit</a></td>
+                <td><a th:href="@{'/web/customers/delete/' + ${customer.id}}">Delete</a></td>
+                <td><a th:href="@{'/web/customers/purchase/' + ${customer.id}}">Purchase</a></td>
+                <td><a th:href="@{'/web/customers/payment/' + ${customer.id}}">Payment</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/web/customers/create'}">Create New Customer</a>
 </body>
 </html>

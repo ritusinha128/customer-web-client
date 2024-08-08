@@ -1,14 +1,81 @@
-<html>
-	<head>
-		<title> Payment Form </title>
-	</head>
-	<body>
-		<form method="post" th:action="@{/web/customers/payment}">
-			<label> ID: </label>
-			<input type="number" th:field="*{customer.id}" readonly></input>
-			<label> Payment Amount: </label>
-			<input type="number" id="payment" name="payment"></input>
-			<button id="make_payment" type="submit" name="action" > Make Payment </button>
-		</form>
-	</body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="number"]:read-only {
+            background-color: #f0f0f0;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function makePayment() {
+            const paymentField = document.getElementById("payment");
+            const balanceDue = document.getElementById("balanceDue");
+
+            if (parseFloat(paymentField.value) > parseFloat(balanceDue.value)) {
+                showToast("Payment cannot exceed balance due");
+                paymentField.value = 0;
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission if validation passes
+        }
+
+        function showToast(message) {
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+    <h1>Payment Form</h1>
+    <form method="post" th:action="@{/web/customers/payment}" onsubmit="return makePayment()">
+        <label>ID:</label>
+        <input type="hidden" id="balanceDue" name="balanceDue" th:value="${customer.balanceDue}"/>
+        <input type="number" th:field="*{customer.id}" readonly/>
+        <label>Payment Amount:</label>
+        <input type="number" id="payment" name="payment"/>
+        <button id="make_payment" type="submit" name="action">Make Payment</button>
+    </form>
+</body>
 </html>
