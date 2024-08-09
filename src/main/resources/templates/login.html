@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Input Form</title>
+    <title>Login</title>
     <style>
+        /* Add some basic styling */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -22,7 +23,7 @@
             margin-bottom: 10px;
             display: block;
         }
-        input[type="text"] {
+        input[type="text"], input[type="password"] {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
@@ -45,34 +46,19 @@
         button[type="submit"]:hover {
             background-color: #0056b3;
         }
-        .nav-button {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .nav-button a {
-            text-decoration: none;
-            background-color: #ccc;
-            color: #333;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .nav-button a:hover {
-            background-color: #bbb;
+        .error {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <h1>Customer Form</h1>
-    <form method="post" th:action="@{${customer.id} != 0} ? @{'/web/customers/update/' + ${customer.id}} : @{/web/customers}">
-        <input type="hidden" th:field="*{customer.id}"/>
-        <label>Name:</label>
-        <input type="text" th:field="*{customer.name}" required/>
-        <input type="hidden" th:field="*{customer.password}" required/>
-        <button type="submit">Submit</button>
+    <h1>Login</h1>
+    <form th:action="@{/web/customers/login}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Login</button>
     </form>
-     <div class="nav-button">
-        <a th:href="@{/web/customers}">Back to Customer List</a>
-    </div>
 </body>
 </html>

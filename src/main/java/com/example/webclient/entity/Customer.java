@@ -9,10 +9,13 @@ public class Customer implements Serializable {
 	private String name;
 	private double totalSales;
 	private double balanceDue;
+	private String username;
+	private String password;
 	
 	public Customer(long id, String name) {
 		this.id = id;
 		this.name = name;
+		this.username = name.toLowerCase();
 	}
 	
 	public Customer() {
@@ -63,6 +66,22 @@ public class Customer implements Serializable {
 
 	public void setBalanceDue(double balanceDue) {
 		this.balanceDue = balanceDue;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
